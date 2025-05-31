@@ -1,0 +1,28 @@
+{
+  "name": "fishy-fishy",
+  "version": "1.0.0",
+  "description": "An incremental idle/clicker game made with phaserjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amcolash/fishy-fishy.git"
+  },
+  "author": "Andrew McOlash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amcolash/fishy-fishy/issues"
+  },
+  "homepage": "https://github.com/amcolash/fishy-fishy#readme",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "phaser": "^3.90.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  }
+}
