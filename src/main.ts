@@ -14,12 +14,9 @@ const config: Types.Core.GameConfig = {
     autoCenter: Scale.CENTER_HORIZONTALLY,
   },
   scene: [Boot, Preloader, Main],
-  input: {
-    gamepad: true,
-  },
-  dom: {
-    createContainer: true,
-  },
+  pixelArt: true,
+  roundPixels: true,
+  antialias: false,
 };
 
 new Game(config);

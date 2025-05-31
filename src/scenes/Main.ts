@@ -4,6 +4,7 @@ import { Upgrades } from '../classes/Upgrades';
 import { fontStyle } from '../util/fonts';
 import { Button } from '../classes/Button';
 import { maxAll } from '../util/debug';
+import { formatNumber } from '../util/format';
 
 export class Main extends Scene {
   gameState: GameState;
@@ -29,7 +30,7 @@ export class Main extends Scene {
   update() {
     this.gameState.update();
     this.text.setText(
-      `Fish: ${this.gameState.fish}\nProduction: ${this.gameState.fishProduction}\nPrestige: +${this.gameState.prestigeLevel * 100}%`
+      `Fish: ${formatNumber(this.gameState.fish)}\nProduction: ${formatNumber(this.gameState.fishProduction)}\nPrestige: +${this.gameState.prestigeLevel * 100}%`
     );
 
     if (this.gameState.fish >= this.gameState.getPrestigeCost()) {

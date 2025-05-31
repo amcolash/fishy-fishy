@@ -1,27 +1,21 @@
-import { getCost, Upgrade, UpgradeMap } from '../classes/Upgrades';
+import { defaultUpgrades, getCost, Upgrade, UpgradeMap } from '../classes/Upgrades';
+import { Config } from '../util/config';
 import { fibonacci } from '../util/util';
 
 const fib = fibonacci(1000);
 
 export class GameState {
-  fish: number = 1000000;
+  fish: number = Config.debug ? 1000000 : 10;
   fishProduction: number = 0;
   totalFish: number = 0;
   prestigeLevel: number = 0;
 
   nextUpdate: number = 0;
-  tickMultiplier: number = 50000000;
+  tickMultiplier: number = Config.debug ? 50000000 : 1;
   upgrades: UpgradeMap;
 
   constructor() {
-    this.upgrades = {
-      rod1: { current: 0, max: 10, cost: 10, production: 1 },
-      rod2: { current: 0, max: 10, cost: 100, production: 5 },
-      rod3: { current: 0, max: 10, cost: 1000, production: 20 },
-      rod4: { current: 0, max: 10, cost: 10000, production: 100 },
-      rod5: { current: 0, max: 10, cost: 100000, production: 500 },
-      fisher1: { current: 0, max: 10, cost: 1000000, production: 2500 },
-    };
+    this.upgrades = defaultUpgrades;
     this.setNextUpdate();
   }
 
@@ -49,7 +43,7 @@ export class GameState {
     for (const upgrade of Object.values(this.upgrades)) {
       production += upgrade.current * upgrade.production;
     }
-    return production * (this.prestigeLevel + 1);
+    return production * (this.prestigeLevel + 1) * (Config.debug ? 1000 : 1);
   }
 
   upgrade(upgrade: Upgrade) {
