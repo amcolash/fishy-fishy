@@ -2,6 +2,8 @@ import { Game, Scale, Types } from 'phaser';
 import { Boot } from './scenes/Boot';
 import { Preloader } from './scenes/Preloader';
 import { Main } from './scenes/Main';
+import { Config } from './util/config';
+import { initFps } from './util/stats';
 
 const config: Types.Core.GameConfig = {
   type: Phaser.WEBGL,
@@ -19,4 +21,6 @@ const config: Types.Core.GameConfig = {
   antialias: false,
 };
 
-new Game(config);
+const game = new Game(config);
+
+if (Config.debug) initFps(game);

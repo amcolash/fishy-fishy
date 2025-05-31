@@ -1,4 +1,4 @@
-import { defaultUpgrades, getCost, Upgrade, UpgradeMap } from '../classes/Upgrades';
+import { defaultUpgrades, getCost, UpgradeType, UpgradeMap } from '../classes/Upgrades';
 import { Config } from '../util/config';
 import { fibonacci } from '../util/util';
 
@@ -46,7 +46,7 @@ export class GameState {
     return production * (this.prestigeLevel + 1) * (Config.debug ? 1000 : 1);
   }
 
-  upgrade(upgrade: Upgrade) {
+  upgrade(upgrade: UpgradeType) {
     const upgradeData = this.upgrades[upgrade];
     const cost = getCost(upgradeData);
     if (upgradeData.current < upgradeData.max && this.fish >= cost) {
