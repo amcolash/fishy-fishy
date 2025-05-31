@@ -19,7 +19,7 @@ export class Main extends Scene {
   create() {
     this.input.keyboard?.on('keydown-M', () => maxAll(this.gameState));
 
-    this.text = this.add.text(100, 100, '', fontStyle);
+    this.text = this.add.text(100, 50, '', fontStyle);
     new Upgrades(this, this.gameState);
 
     this.prestige = new Button(this, 500, 100, '', () => this.gameState.prestige());

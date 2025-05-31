@@ -21,6 +21,7 @@ export function getCost(upgrade: UpgradeData): number {
 
 export class Upgrades extends GameObjects.Group {
   gameState: GameState;
+  buttons: Button[] = [];
 
   constructor(scene: Scene, gameState: GameState) {
     super(scene, { runChildUpdate: true });
@@ -29,9 +30,14 @@ export class Upgrades extends GameObjects.Group {
     const upgrades = Object.entries(this.gameState.upgrades);
     for (let i = 0; i < upgrades.length; i++) {
       const upgrade = upgrades[i];
-      this.add(
-        new Button(this.scene, 100, 300 + 70 * i, upgrade[0], () => this.gameState.upgrade(upgrade[0] as Upgrade))
+
+      this.add(this.scene.add.image(200, 250 + 85 * i, 'gear', i).setScale(2));
+
+      const button = new Button(this.scene, 270, 220 + 85 * i, upgrade[0], () =>
+        this.gameState.upgrade(upgrade[0] as Upgrade)
       );
+      this.buttons.push(button);
+      this.add(button);
     }
 
     scene.add.existing(this);
@@ -40,16 +46,15 @@ export class Upgrades extends GameObjects.Group {
   preUpdate(time: number, delta: number): void {
     super.preUpdate(time, delta);
 
-    const children = this.getChildren();
-    for (let i = 0; i < children.length; i++) {
-      const button = children[i] as Button;
+    for (let i = 0; i < this.buttons.length; i++) {
+      const button = this.buttons[i] as Button;
       const upgrade = this.gameState.upgrades[upgradeList[i]];
       const cost = getCost(upgrade);
       const { current, max } = upgrade;
       const production = upgrade.production * (this.gameState.prestigeLevel + 1);
       const maxed = current >= max;
       button.setText(
-        `${upgradeList[i]}: ${current}/${max}${maxed ? ' [max]' : ''} - ${maxed ? 'Production:' : `Cost: ${cost} - Production: [+${production}]`} ${current * production}`
+        `${current}/${max}${maxed ? ' [max]' : ''} - ${maxed ? 'Production:' : `Cost: ${cost} - Production: [+${production}]`} ${current * production}`
       );
 
       let color = '#00ff00';
