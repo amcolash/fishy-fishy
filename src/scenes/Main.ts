@@ -35,7 +35,7 @@ export class Main extends Scene {
 
     if (this.gameState.fish >= this.gameState.getPrestigeCost()) {
       this.prestige.setVisible(true);
-      this.prestige.setText(`Prestige to gain +${this.gameState.getPrestigeBonus() * 100}% fish production`);
+      this.prestige.setText(`Prestige: +${this.gameState.getPrestigeBonus() * 100}% production`);
     } else {
       this.prestige.setVisible(false);
     }

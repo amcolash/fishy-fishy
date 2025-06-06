@@ -5,6 +5,8 @@ import { Main } from './scenes/Main';
 import { Config } from './util/config';
 import { initFps } from './util/stats';
 
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin';
+
 const config: Types.Core.GameConfig = {
   type: Phaser.WEBGL,
   width: 1280,
@@ -19,6 +21,15 @@ const config: Types.Core.GameConfig = {
   pixelArt: true,
   roundPixels: true,
   antialias: false,
+  plugins: {
+    scene: [
+      {
+        key: 'rexUI',
+        plugin: RexUIPlugin,
+        mapping: 'rexUI',
+      },
+    ],
+  },
 };
 
 const game = new Game(config);
